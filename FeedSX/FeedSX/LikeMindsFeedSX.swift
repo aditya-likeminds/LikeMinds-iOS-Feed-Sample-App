@@ -78,8 +78,7 @@ public class LikeMindsFeedSX {
             guard let configurations = response.data?.communityConfigurations else {
                 return
             }
-            print("------Configuration Data----- \(configurations)")
-            LocalPrefrerences.saveObject(configurations, forKey: LocalPreferencesKey.userDetails)
+            LocalPrefrerences.saveObject(configurations, forKey: LocalPreferencesKey.communityConfigurations)
         }
     }
     

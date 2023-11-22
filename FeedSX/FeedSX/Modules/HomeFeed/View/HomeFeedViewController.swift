@@ -499,6 +499,11 @@ extension HomeFeedViewControler: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let feed = homeFeedViewModel.feeds[indexPath.row]
+        if homeFeedViewModel.feeds.count >= homeFeedViewModel.pageSize, indexPath.row >= homeFeedViewModel.feeds.count - 3,
+           !homeFeedViewModel.isFeedLoading,
+           !homeFeedViewModel.isReachedLastPage {
+            homeFeedViewModel.getFeed()
+        }
         switch feed.postAttachmentType() {
         case .document:
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeFeedDocumentTableViewCell.nibName, for: indexPath) as! HomeFeedDocumentTableViewCell

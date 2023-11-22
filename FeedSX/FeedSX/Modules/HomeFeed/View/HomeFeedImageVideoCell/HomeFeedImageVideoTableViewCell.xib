@@ -17,39 +17,45 @@
                 <rect key="frame" x="0.0" y="0.0" width="371" height="788"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DfE-uq-BLo">
-                        <rect key="frame" x="0.0" y="12" width="371" height="64"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="64" id="gXu-w3-M08"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7l-X6-X34" userLabel="Topic Container View">
-                        <rect key="frame" x="0.0" y="76" width="371" height="14"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Eqj-AB-d9t">
+                        <rect key="frame" x="0.0" y="6" width="371" height="114"/>
                         <subviews>
-                            <view contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="Ghe-4u-9Gx" userLabel="Topic Feed" customClass="LMTopicView" customModule="FeedSX" customModuleProvider="target">
-                                <rect key="frame" x="16" y="8" width="339" height="6"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DfE-uq-BLo">
+                                <rect key="frame" x="0.0" y="0.0" width="371" height="64"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="gXu-w3-M08"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7l-X6-X34" userLabel="Topic Container View">
+                                <rect key="frame" x="0.0" y="64" width="371" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="Ghe-4u-9Gx" userLabel="Topic Feed" customClass="LMTopicView" customModule="FeedSX" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="8" width="339" height="42"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Ghe-4u-9Gx" secondAttribute="bottom" id="L76-Wp-5Fq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ghe-4u-9Gx" secondAttribute="trailing" constant="16" id="d7I-EE-oNF"/>
+                                    <constraint firstItem="Ghe-4u-9Gx" firstAttribute="leading" secondItem="x7l-X6-X34" secondAttribute="leading" constant="16" id="eAw-Z4-yrG"/>
+                                    <constraint firstItem="Ghe-4u-9Gx" firstAttribute="top" secondItem="x7l-X6-X34" secondAttribute="top" constant="8" id="kGf-6b-I6Y"/>
+                                </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Ghe-4u-9Gx" secondAttribute="bottom" id="L76-Wp-5Fq"/>
-                            <constraint firstAttribute="trailing" secondItem="Ghe-4u-9Gx" secondAttribute="trailing" constant="16" id="d7I-EE-oNF"/>
-                            <constraint firstItem="Ghe-4u-9Gx" firstAttribute="leading" secondItem="x7l-X6-X34" secondAttribute="leading" constant="16" id="eAw-Z4-yrG"/>
-                            <constraint firstItem="Ghe-4u-9Gx" firstAttribute="top" secondItem="x7l-X6-X34" secondAttribute="top" constant="8" id="kGf-6b-I6Y"/>
-                        </constraints>
-                    </view>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </stackView>
                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjw-lo-VI3">
-                        <rect key="frame" x="0.0" y="90" width="371" height="648"/>
+                        <rect key="frame" x="0.0" y="120" width="371" height="612"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="G8L-TL-xCl">
-                                <rect key="frame" x="0.0" y="0.0" width="371" height="648"/>
+                                <rect key="frame" x="0.0" y="0.0" width="371" height="612"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r90-Rt-NUU">
-                                        <rect key="frame" x="0.0" y="0.0" width="371" height="247"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="371" height="211"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TnN-ny-eB9" customClass="LMTextView" customModule="FeedSX" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="0.0" width="351" height="247"/>
+                                                <rect key="frame" x="10" y="0.0" width="351" height="211"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, google.com consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore ma</string>
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -67,7 +73,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alc-yf-csI">
-                                        <rect key="frame" x="0.0" y="252" width="371" height="371"/>
+                                        <rect key="frame" x="0.0" y="216" width="371" height="371"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CQT-TG-loH">
                                                 <rect key="frame" x="0.0" y="0.0" width="371" height="371"/>
@@ -89,7 +95,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y3g-3U-495">
-                                        <rect key="frame" x="0.0" y="628" width="371" height="20"/>
+                                        <rect key="frame" x="0.0" y="592" width="371" height="20"/>
                                         <subviews>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ero-js-alJ">
                                                 <rect key="frame" x="127.66666666666666" y="2.3333333333333712" width="115.66666666666666" height="25.666666666666668"/>
@@ -116,7 +122,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYu-6U-fkS">
-                        <rect key="frame" x="0.0" y="738" width="371" height="50"/>
+                        <rect key="frame" x="0.0" y="732" width="371" height="50"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="9dT-wJ-rRn"/>
@@ -126,18 +132,15 @@
                 <color key="backgroundColor" red="0.81568627449999997" green="0.84705882349999995" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="pYu-6U-fkS" firstAttribute="top" secondItem="bjw-lo-VI3" secondAttribute="bottom" id="2qR-u8-UAA"/>
-                    <constraint firstAttribute="trailing" secondItem="DfE-uq-BLo" secondAttribute="trailing" id="3aT-CD-1nd"/>
-                    <constraint firstItem="x7l-X6-X34" firstAttribute="top" secondItem="DfE-uq-BLo" secondAttribute="bottom" id="868-lr-nh4"/>
-                    <constraint firstAttribute="bottom" secondItem="pYu-6U-fkS" secondAttribute="bottom" id="EUy-mH-CEn"/>
+                    <constraint firstAttribute="bottom" secondItem="pYu-6U-fkS" secondAttribute="bottom" constant="6" id="EUy-mH-CEn"/>
                     <constraint firstItem="bjw-lo-VI3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="GCj-fi-fsI"/>
-                    <constraint firstItem="x7l-X6-X34" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Nyb-uk-cFn"/>
-                    <constraint firstItem="DfE-uq-BLo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="SKs-3X-19d"/>
-                    <constraint firstItem="bjw-lo-VI3" firstAttribute="top" secondItem="x7l-X6-X34" secondAttribute="bottom" id="T3S-AU-jME"/>
+                    <constraint firstItem="Eqj-AB-d9t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="UAP-L6-67x"/>
+                    <constraint firstAttribute="trailing" secondItem="Eqj-AB-d9t" secondAttribute="trailing" id="WKO-wI-4hB"/>
                     <constraint firstAttribute="trailing" secondItem="pYu-6U-fkS" secondAttribute="trailing" id="WmT-aS-rB7"/>
                     <constraint firstAttribute="trailing" secondItem="bjw-lo-VI3" secondAttribute="trailing" id="a1U-yR-G7L"/>
-                    <constraint firstItem="DfE-uq-BLo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="c5h-88-2fZ"/>
                     <constraint firstItem="pYu-6U-fkS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="c6b-8m-YCA"/>
-                    <constraint firstAttribute="trailing" secondItem="x7l-X6-X34" secondAttribute="trailing" id="sT9-cC-Hhb"/>
+                    <constraint firstItem="Eqj-AB-d9t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="u39-JW-B8S"/>
+                    <constraint firstItem="bjw-lo-VI3" firstAttribute="top" secondItem="Eqj-AB-d9t" secondAttribute="bottom" id="xgV-fT-w7c"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.81568627449999997" green="0.84705882349999995" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -120,7 +120,7 @@ class EditPostViewController: BaseViewController {
     
     func setupNavigationItems() {
         postButtonItem = UIBarButtonItem(title: "Save",
-                                         style: .plain,
+                                         style: .done,
                                          target: self,
                                          action: #selector(editPost))
         postButtonItem?.tintColor = LMBranding.shared.buttonColor

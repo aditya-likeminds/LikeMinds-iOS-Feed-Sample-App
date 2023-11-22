@@ -22,7 +22,7 @@ public final class HomeFeedViewControler: BaseViewController {
     let createPostButton: LMButton = {
         let createPost = LMButton()
         createPost.setImage(UIImage(systemName: ImageIcon.calenderBadgePlus), for: .normal)
-        createPost.setTitle("NEW POST", for: .normal)
+        createPost.setTitle(StringConstant.HomeFeed.newPost, for: .normal)
         createPost.titleLabel?.font = LMBranding.shared.font(13, .medium)
         createPost.tintColor = .white
         createPost.backgroundColor = LMBranding.shared.buttonColor
@@ -76,7 +76,7 @@ public final class HomeFeedViewControler: BaseViewController {
     let postingLabel: LMLabel = {
         let label = LMLabel()
         label.font = LMBranding.shared.font(16, .medium)
-        label.text = "Posting"
+        label.text = StringConstant.HomeFeed.creatingResource
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return label
@@ -416,11 +416,11 @@ public final class HomeFeedViewControler: BaseViewController {
     
     @objc func createNewPost() {
         if self.isPostCreatingInProgress {
-            self.presentAlert(message: MessageConstant.postingInProgress)
+            self.presentAlert(message: StringConstant.postingInProgress)
             return
         }
         guard self.homeFeedViewModel.hasRightForCreatePost() else  {
-            self.presentAlert(message: MessageConstant.restrictToCreatePost)
+            self.presentAlert(message: StringConstant.restrictToCreatePost)
             return
         }
         let createView = CreatePostViewController(nibName: "CreatePostViewController", bundle: Bundle(for: CreatePostViewController.self))
@@ -462,7 +462,7 @@ public final class HomeFeedViewControler: BaseViewController {
             self.view.layoutIfNeeded()
             UIView.animate(withDuration: 0.2) {[weak self] in
                 guard let weakSelf = self else {return}
-                weakSelf.createPostButton.setTitle("NEW POST", for: .normal)
+                weakSelf.createPostButton.setTitle(StringConstant.HomeFeed.newPost, for: .normal)
                 weakSelf.createPostButton.setInsets(forContentPadding: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), imageTitlePadding: 10)
                 self?.createButtonWidthConstraints?.isActive = false
                 self?.createButtonWidthConstraints = self?.createPostButton.widthAnchor.constraint(equalToConstant: 150.0)

@@ -215,7 +215,7 @@ private extension EditPostViewModel {
             guard let fileUrl = attachedItem.attachmentUrl else { continue }
             let fileType: UploaderType = .file
             let item = AWSFileUploadRequest(fileUrl: fileUrl, awsFilePath: filePath, fileType: fileType, index: index, name: attachedItem.name ?? "document_\(Date().millisecondsSince1970)")
-            item.awsUploadedUrl = fileUrl.hasPrefix("https://s3.ap-south-1.amazonaws.com") ? fileUrl : nil
+            item.awsUploadedUrl = fileUrl.hasPrefix("amazonaws.com") ? fileUrl : nil
             item.thumbnailImage = attachedItem.thumbnailImage
             item.documentAttachmentSize = attachedItem.attachmentSize
             item.documentNumberOfPages = attachedItem.numberOfPages
@@ -232,7 +232,7 @@ private extension EditPostViewModel {
             guard let fileUrl = attachedItem.url else { continue }
             let fileType: UploaderType = attachedItem.fileType == .image ? .image : .video
             let item = AWSFileUploadRequest(fileUrl: fileUrl, awsFilePath: filePath, fileType: fileType, index: index, name: attachedItem.name ?? "media_\(Date().millisecondsSince1970)")
-            item.awsUploadedUrl = fileUrl.hasPrefix("https://s3.ap-south-1.amazonaws.com") ? fileUrl : nil
+            item.awsUploadedUrl = fileUrl.hasPrefix("amazonaws.com") ? fileUrl : nil
             item.thumbnailImage = attachedItem.thumbnailImage
             imageVideoAttachments.append(item)
             index += 1

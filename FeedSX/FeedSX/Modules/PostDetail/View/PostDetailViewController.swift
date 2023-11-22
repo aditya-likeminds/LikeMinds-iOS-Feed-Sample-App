@@ -105,7 +105,7 @@ class PostDetailViewController: BaseViewController {
         viewModel.getPostDetail()
         
         hideTaggingViewContainer()
-        self.setTitleAndSubtile(title: "Post", subTitle: viewModel.totalCommentsCount())
+        self.setTitleAndSubtile(title: StringConstant.PostDetail.screenTitle, subTitle: viewModel.totalCommentsCount())
         
         validateCommentRight()
     }
@@ -129,7 +129,7 @@ class PostDetailViewController: BaseViewController {
     
     func validateCommentRight() {
         if !viewModel.hasRightForCommentOnPost() {
-            textViewPlaceHolder.text = MessageConstant.restrictToCommentOnPost
+            textViewPlaceHolder.text = StringConstant.restrictToCommentOnPost
             sendButton.isHidden = true
             commentTextView.isUserInteractionEnabled = false
         } else {

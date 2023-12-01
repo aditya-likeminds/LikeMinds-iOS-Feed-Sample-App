@@ -65,7 +65,7 @@ class CreatePostViewController: BaseViewController {
     @IBOutlet private weak var topicFeedViewHeightConstraint: NSLayoutConstraint!
     
     var debounceForDecodeLink:Timer?
-    var uploadActionsHeight:CGFloat = 43 * 3
+    var uploadActionsHeight:CGFloat = 54 * 3
     
     var placeholderLabel: LMLabel = {
         let label = LMLabel()
@@ -107,7 +107,7 @@ class CreatePostViewController: BaseViewController {
         viewModel.delegate = self
         
         setupProfileData()
-        setTitleAndSubtile(title: "Create a post", subTitle: nil)
+        setTitleAndSubtile(title: StringConstant.CreatePost.screenTitle, subTitle: nil)
         hideTaggingViewContainer()
         pageControl?.currentPageIndicatorTintColor = LMBranding.shared.buttonColor
     }
@@ -128,8 +128,8 @@ class CreatePostViewController: BaseViewController {
     }
     
     func setupNavigationItems() {
-         postButtonItem = UIBarButtonItem(title: "Post",
-                        style: .plain,
+         postButtonItem = UIBarButtonItem(title: "Create",
+                        style: .done,
                         target: self,
                         action: #selector(createPost))
         postButtonItem?.tintColor = LMBranding.shared.buttonColor
@@ -147,7 +147,6 @@ class CreatePostViewController: BaseViewController {
     }
     
     @objc func createPost() {
-        print("post data")
         self.view.endEditing(true)
         let text = self.captionTextView.trimmedText()
         if (self.viewModel.currentSelectedUploadeType == .link),
@@ -171,21 +170,17 @@ class CreatePostViewController: BaseViewController {
         self.viewModel.currentSelectedUploadeType = mediaType == .image ? .image : .video
         let start = Date()
         self.presentImagePicker(imagePicker, select: {[weak self] (asset) in
-            print("Selected: \(asset)")
             asset.getURL { responseURL in
                 guard let url = responseURL else {return }
                 let mediaType: CreatePostViewModel.AttachmentUploadType = asset.mediaType == .image ? .image : .video
                 self?.viewModel.addImageVideoAttachment(fileUrl: url, type: mediaType)
             }
         }, deselect: {[weak self] (asset) in
-            print("Deselected: \(asset)")
             asset.getURL { responseURL in
                 self?.viewModel.imageAndVideoAttachments.removeAll(where: {$0.url == responseURL?.absoluteString})
             }
         }, cancel: { (assets) in
-            print("Canceled with selections: \(assets)")
         }, finish: {[weak self] (assets) in
-            print("Finished with selections: \(assets)")
             self?.viewModel.currentSelectedUploadeType =  (self?.viewModel.imageAndVideoAttachments.count ?? 0) > 0 ? .image : .unknown
             self?.reloadCollectionView()
             
@@ -440,7 +435,6 @@ extension CreatePostViewController: CreatePostViewModelDelegate {
         switch viewModel.currentSelectedUploadeType {
         case .image, .video:
              isCountGreaterThanZero = viewModel.imageAndVideoAttachments.count > 0
-//            attachmentView.isHidden = !isCountGreaterThanZero
             self.uploadActionViewHeightConstraint.constant = isCountGreaterThanZero ? 0 : uploadActionsHeight
             self.collectionSuperViewHeightConstraint.constant = 393
             let imageCount = viewModel.imageAndVideoAttachments.count
@@ -448,7 +442,6 @@ extension CreatePostViewController: CreatePostViewModelDelegate {
             pageControl?.numberOfPages = imageCount
         case .document:
              isCountGreaterThanZero = viewModel.documentAttachments.count > 0
-//            attachmentView.isHidden = !isCountGreaterThanZero
             self.uploadActionViewHeightConstraint.constant = isCountGreaterThanZero ? 0 : uploadActionsHeight
             let docHeight = CGFloat(viewModel.documentAttachments.count * 90)
             self.collectionSuperViewHeightConstraint.constant = docHeight < 393 ? 393 : docHeight

@@ -45,6 +45,7 @@ public class LikeMindsFeedSX {
                 weakSelf.registerDeviceToken()
             }
             LocalPrefrerences.saveObject(user, forKey: LocalPreferencesKey.userDetails)
+            weakSelf.getCommunityConfiguration()
             let homeFeedVC = UINavigationController(rootViewController: HomeFeedViewControler())
             homeFeedVC.modalPresentationStyle = .fullScreen
             viewController.navigationController?.present(homeFeedVC, animated: true)
@@ -69,6 +70,15 @@ public class LikeMindsFeedSX {
                     print(response)
                 }
             }
+        }
+    }
+    
+    func getCommunityConfiguration() {
+        LMFeedClient.shared.getCommunityConfiguration(GetCommunityConfigurationRequest.builder()) { response in
+            guard let configurations = response.data?.communityConfigurations else {
+                return
+            }
+            LocalPrefrerences.saveObject(configurations, forKey: LocalPreferencesKey.communityConfigurations)
         }
     }
     

@@ -14,17 +14,20 @@ public struct LocalPreferencesKey {
     public static let deviceId = "device_uuid"
     public static let feedApiKey = "feed_api_key"
     public static let clientDomainUrl = "client_domain_url"
+    public static let communityConfigurations = "community_configurations"
+
 }
 
- class LocalPrefrerences {
+class LocalPrefrerences {
     
-     static let userDefault = UserDefaults.standard
-     
-     static func save(_ value: Any, forKey: String) {
-         let defaults = UserDefaults.standard
-         defaults.setValue(value, forKey: forKey)
-         defaults.synchronize()
-     }
+    static let userDefault = UserDefaults.standard
+    static var postVariable: String?
+    
+    static func save(_ value: Any, forKey: String) {
+        let defaults = UserDefaults.standard
+        defaults.setValue(value, forKey: forKey)
+        defaults.synchronize()
+    }
     
     static func saveObject<T: Encodable>(_ object: T, forKey: String) {
         let encoder = JSONEncoder()
@@ -52,6 +55,21 @@ public struct LocalPreferencesKey {
         return nil
     }
     
+    static func getCommunityConfiguration(withConfigurationType type: String) -> CommunityConfiguration? {
+        let defaults = UserDefaults.standard
+        if let savedData = defaults.object(forKey: LocalPreferencesKey.communityConfigurations) as? Data {
+            do {
+                let decoder = JSONDecoder()
+                let savedConfigurations = try decoder.decode([CommunityConfiguration].self, from: savedData)
+                let config = savedConfigurations.first(where: {$0.type == type })
+                return config
+            } catch let error {
+                print("Error getting cart from defaults \(error)")
+            }
+        }
+        return nil
+    }
+    
     static func getMemberStateData() -> GetMemberStateResponse? {
         let defaults = UserDefaults.standard
         if let savedData = defaults.object(forKey: LocalPreferencesKey.memberStates) as? Data {
@@ -64,5 +82,13 @@ public struct LocalPreferencesKey {
             }
         }
         return nil
+    }
+    
+    static var getPostVariable: String {
+        guard let variable = postVariable else {
+            postVariable = getCommunityConfiguration(withConfigurationType: "feed_metadata")?.value?.post
+            return "resource"// postVariable ?? "post"
+        }
+        return "resource"//variable
     }
 }

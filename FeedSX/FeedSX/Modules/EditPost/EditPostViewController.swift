@@ -496,6 +496,7 @@ extension EditPostViewController: EditPostViewModelDelegate {
     
     func showHideTopicView(topics: [TopicViewCollectionCell.ViewModel]) {
         topicFeedView.configure(with: topics) 
+        topicFeedView.isHidden = topics.count < 1
     }
 }
 

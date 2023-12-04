@@ -57,7 +57,6 @@ final class LMTopicView: UIView {
         self.topics = topics
         topicCollectionView.reloadData()
         sepratorView.isHidden = !isSepratorShown
-        self.superview?.isHidden = topics.isEmpty
         layoutIfNeeded()
     }
 }

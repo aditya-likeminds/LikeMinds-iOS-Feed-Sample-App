@@ -475,6 +475,7 @@ extension CreatePostViewController: CreatePostViewModelDelegate {
     
     func showHideTopicView(topics: [TopicViewCollectionCell.ViewModel]) {
         topicFeedView.configure(with: topics)
+        topicFeedView.isHidden = topics.count < 1
     }
 }
 

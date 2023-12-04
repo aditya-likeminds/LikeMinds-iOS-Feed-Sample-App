@@ -87,8 +87,8 @@ class LocalPrefrerences {
     static var getPostVariable: String {
         guard let variable = postVariable else {
             postVariable = getCommunityConfiguration(withConfigurationType: "feed_metadata")?.value?.post
-            return "resource"// postVariable ?? "post"
+            return postVariable ?? "post"
         }
-        return "resource"//variable
+        return variable
     }
 }

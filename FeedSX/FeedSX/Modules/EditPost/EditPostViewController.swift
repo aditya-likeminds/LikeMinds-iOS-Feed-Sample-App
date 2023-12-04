@@ -96,7 +96,7 @@ class EditPostViewController: BaseViewController {
         topicFeedView.delegate = self
         
         self.setupProfileData()
-        self.setTitleAndSubtile(title: "Edit post", subTitle: nil)
+        self.setTitleAndSubtile(title: StringConstant.EditPost.screenTitle, subTitle: nil)
         self.hideTaggingViewContainer()
         self.pageControl?.currentPageIndicatorTintColor = LMBranding.shared.buttonColor
         self.viewModel.getPost()
@@ -120,7 +120,7 @@ class EditPostViewController: BaseViewController {
     
     func setupNavigationItems() {
         postButtonItem = UIBarButtonItem(title: "Save",
-                                         style: .plain,
+                                         style: .done,
                                          target: self,
                                          action: #selector(editPost))
         postButtonItem?.tintColor = LMBranding.shared.buttonColor
@@ -149,6 +149,7 @@ class EditPostViewController: BaseViewController {
         }
         
         if viewModel.selectedTopics.contains(where: { !$0.isEnabled }) {
+            //TODO:- Need to check with Devansh
             showErrorAlert(message: "This Post Contains some ")
             return
         }
@@ -173,21 +174,17 @@ class EditPostViewController: BaseViewController {
         self.viewModel.currentSelectedUploadeType = mediaType == .image ? .image : .video
         let start = Date()
         self.presentImagePicker(imagePicker, select: {[weak self] (asset) in
-            print("Selected: \(asset)")
             asset.getURL { responseURL in
                 guard let url = responseURL else {return }
                 let mediaType: EditPostViewModel.AttachmentUploadType = asset.mediaType == .image ? .image : .video
                 self?.viewModel.addImageVideoAttachment(fileUrl: url, type: mediaType)
             }
         }, deselect: {[weak self] (asset) in
-            print("Deselected: \(asset)")
             asset.getURL { responseURL in
                 self?.viewModel.imageAndVideoAttachments.removeAll(where: {$0.url == responseURL?.absoluteString})
             }
         }, cancel: { (assets) in
-            print("Canceled with selections: \(assets)")
         }, finish: {[weak self] (assets) in
-            print("Finished with selections: \(assets)")
             self?.viewModel.currentSelectedUploadeType =  (self?.viewModel.imageAndVideoAttachments.count ?? 0) > 0 ? .image : .unknown
             self?.reloadCollectionView()
             
@@ -499,6 +496,7 @@ extension EditPostViewController: EditPostViewModelDelegate {
     
     func showHideTopicView(topics: [TopicViewCollectionCell.ViewModel]) {
         topicFeedView.configure(with: topics) 
+        topicFeedView.isHidden = topics.count < 1
     }
 }
 

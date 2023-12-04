@@ -88,7 +88,7 @@ class DeleteContentViewController: BaseViewController {
     }
     
     private func setTitleAndMessage()  {
-        let deleteContentType = commentId == nil ? "Post" : "comment"
+        let deleteContentType = commentId == nil ? pluralizeOrCapitalize(to: LocalPrefrerences.getPostVariable, withAction: .allSmallSingular) : "comment"
         self.lblPopupTitle.text = String(format: popupTitle, deleteContentType)
         self.lblMessage.text = String(format: popupMessage, deleteContentType)
     }

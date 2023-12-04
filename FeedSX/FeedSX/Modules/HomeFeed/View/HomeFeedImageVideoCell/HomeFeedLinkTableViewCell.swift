@@ -100,7 +100,7 @@ class HomeFeedLinkTableViewCell: UITableViewCell {
         actionFooterSectionView.setupActionFooterSectionData(feedDataView, delegate: delegate)
         setupLinkCell(feedDataView.linkAttachment?.title, description: feedDataView.linkAttachment?.description, link: feedDataView.linkAttachment?.url, linkThumbnailUrl: feedDataView.linkAttachment?.linkThumbnailUrl)
         topicFeedView.configure(with: feedDataView.topics, isSepratorShown: isSepratorShown)
-        topicFeedView.superview?.isHidden = feedDataView.topics.count < 1
+        topicFeedView.superview?.isHidden = feedDataView.topics.isEmpty
         layoutIfNeeded()
     }
     

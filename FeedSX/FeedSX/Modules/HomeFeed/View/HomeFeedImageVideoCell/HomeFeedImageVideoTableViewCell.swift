@@ -105,7 +105,7 @@ class HomeFeedImageVideoTableViewCell: UITableViewCell {
         setupCaption()
         actionFooterSectionView.setupActionFooterSectionData(feedDataView, delegate: delegate)
         topicFeed.configure(with: feedDataView.topics, isSepratorShown: isSepratorShown)
-        topicFeed.superview?.isHidden = feedDataView.topics.count < 1
+        topicFeed.superview?.isHidden = feedDataView.topics.isEmpty
         setupContainerData()
         layoutIfNeeded()
     }
